@@ -4,7 +4,6 @@ import MySQLdb
 import cgi
 import webbrowser
 import os
-import config
 import json
 import Tkinter as tkinter
 from collections import Counter
@@ -13,9 +12,11 @@ top = tkinter.Tk()
 
 
 def get_config_vars():
-	with open('config.json') as json_data_file:
-    	data = json.load(json_data_file)
-    	return data
+	dir_path = os.path.dirname(os.path.realpath(__file__))
+	config_file = dir_path+'/config.json'
+	with open(config_file) as json_data_file:
+		data = json.load(json_data_file)
+		return data
 
 #in future define repeatable
 def get_custom_field_code(field_type, slug, repeatable=False):
@@ -40,7 +41,7 @@ def open_html_file(databade_name):
 	DATABSE = databade_name
 	configvars = get_config_vars()
 	dbhost = configvars['host']
-	dbport = (int)configvars['port']
+	dbport = int(configvars['port'])
 	dbuser = configvars['username']
 	dbpass = configvars['password']
 	# connect
