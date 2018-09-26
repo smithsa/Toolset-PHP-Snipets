@@ -4,10 +4,18 @@ import MySQLdb
 import cgi
 import webbrowser
 import os
+import config
+import json
 import Tkinter as tkinter
 from collections import Counter
 # print(sys.argv)
 top = tkinter.Tk()
+
+
+def get_config_vars():
+	with open('config.json') as json_data_file:
+    	data = json.load(json_data_file)
+    	return data
 
 #in future define repeatable
 def get_custom_field_code(field_type, slug, repeatable=False):
@@ -19,19 +27,24 @@ def get_custom_field_code(field_type, slug, repeatable=False):
 
 	elif(field_type == "text"):
 		if(repeatable):
-			return "<?= do_shortcode(\' types field=\\'"+slug+"\\' index=\\'0\\'][/types] \' ;?>"
+			return "<?= do_shortcode(\' types field=\\'"+slug+"\\' index=\\'0\\'][/types] \') ;?>"
 
 		return '<?= types_render_field(\''+slug+'\', array(\'output\'=>\'raw\')) ;?>'
 
 	elif(field_type == "html"):
 		return '<?= types_render_field(\''+slug+'\', array(\'output\'=>\'html\')) ;?>'
 	else:
-		return false	
+		return false 
 
 def open_html_file(databade_name):
 	DATABSE = databade_name
+	configvars = get_config_vars()
+	dbhost = configvars['host']
+	dbport = (int)configvars['port']
+	dbuser = configvars['username']
+	dbpass = configvars['password']
 	# connect
-	db = MySQLdb.connect(unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock', host="localhost", user="root", passwd="root", db=DATABSE)
+	db = MySQLdb.connect(unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock', host=dbhost, port=dbport, user=dbuser, passwd=dbpass, db=DATABSE)
 
 	cursor = db.cursor()
 
@@ -88,14 +101,14 @@ def open_html_file(databade_name):
 		php_var_code = php_echo_code
 		php_var_name = '$'+slug_name.replace('-','_')
 		if('<?=' in php_var_code):
-			php_var_code = php_var_code.replace('<?=', '<?php '+php_var_name+' = ')
+			php_var_code = php_var_code.replace('<?=', '<?php '+php_var_name+' =')
 
 		php_access_codes.append((slug_name, php_echo_code, php_var_code))	
 
-	file_name = 'projects/'+DATABSE + '_customfields.html'
+	file_name = DATABSE + '_customfields.html'
 	f = open(file_name,'w')
 
-	message = """
+	message = """ 
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -140,23 +153,25 @@ def open_html_file(databade_name):
 					    Sort by Name <i class="fa fa-sort" aria-hidden="true"></i>
 					  </button>
 				</div>
-			</div>
+			</div> 
 				<table>
 				  <thead>
 				    <tr>
 				      <th>Custom Field Name</th>
 				      <th>Php Echo Code</th>
+				      <th>Var in PHP</th>
 				      <th>Var</th>
 				      <th>Echo</th>
 				    </tr>
 				  </thead>
-				  <tbody class="list">
+				  <tbody class="list"> 
 		"""	  
 	for php_access_code in php_access_codes:
 		message +=	'<tr>'
 		message +=	'<td class="name">' + cgi.escape(php_access_code[0]) + '</td>'	    
 		message +=	'<td class="code">' + cgi.escape(php_access_code[1])	+ '</td>'
 		message +=	'<td><button data-clipboard-text="' + cgi.escape(php_access_code[2].replace('"', '\"'))+ '" class="button"><i class="fa fa-clipboard" aria-hidden="true"></i></button></td>'
+		message +=	'<td><button data-clipboard-text="' + cgi.escape(php_access_code[2].replace('"', '\"').replace('<?php', '').replace('?>',''))+ '" class="button warning"><i class="fa fa-clipboard" aria-hidden="true"></i></button></td>'
 		message +=	'<td><button data-clipboard-text="' + cgi.escape(php_access_code[1].replace('"', '\"'))+ '" class="button success"><i class="fa fa-clipboard" aria-hidden="true"></i></button></td>'
 		message +=	'</tr>'
 	message +=	"""	 
@@ -192,7 +207,9 @@ def saveCallback():
 
 if __name__ == '__main__':
 	e1 = tkinter.Entry(top)
-	b1 = tkinter.Button(top, text ="Save", command = saveCallback)
+	label = tkinter.Label(top, text="Database Name")
+	b1 = tkinter.Button(top, text ="Enter", command = saveCallback)
+	label.pack(fill='x')
 	e1.pack(side=tkinter.LEFT)
 	b1.pack(side=tkinter.RIGHT)
 

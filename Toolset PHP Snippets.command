@@ -4,10 +4,18 @@ import MySQLdb
 import cgi
 import webbrowser
 import os
+import config
+import json
 import Tkinter as tkinter
 from collections import Counter
 # print(sys.argv)
 top = tkinter.Tk()
+
+
+def get_config_vars():
+	with open('config.json') as json_data_file:
+    	data = json.load(json_data_file)
+    	return data
 
 #in future define repeatable
 def get_custom_field_code(field_type, slug, repeatable=False):
@@ -30,8 +38,13 @@ def get_custom_field_code(field_type, slug, repeatable=False):
 
 def open_html_file(databade_name):
 	DATABSE = databade_name
+	configvars = get_config_vars()
+	dbhost = configvars['host']
+	dbport = (int)configvars['port']
+	dbuser = configvars['username']
+	dbpass = configvars['password']
 	# connect
-	db = MySQLdb.connect(unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock', host="localhost", user="root", passwd="root", db=DATABSE)
+	db = MySQLdb.connect(unix_socket = '/Applications/MAMP/tmp/mysql/mysql.sock', host=dbhost, port=dbport, user=dbuser, passwd=dbpass, db=DATABSE)
 
 	cursor = db.cursor()
 
@@ -194,7 +207,9 @@ def saveCallback():
 
 if __name__ == '__main__':
 	e1 = tkinter.Entry(top)
-	b1 = tkinter.Button(top, text ="Save", command = saveCallback)
+	label = tkinter.Label(top, text="Database Name")
+	b1 = tkinter.Button(top, text ="Enter", command = saveCallback)
+	label.pack(fill='x')
 	e1.pack(side=tkinter.LEFT)
 	b1.pack(side=tkinter.RIGHT)
 
