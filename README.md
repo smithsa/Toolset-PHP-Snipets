@@ -2,7 +2,8 @@
 
 Toolset PHP Snippets python script that works to get php code customizable field snippets for [Wordpress Toolset Plugin](https://toolset.com/documentation/) custom fields.Included in the repository are (1) an executable script and (2) python script.
 
-![toolset snippet php screenshot](https://user-images.githubusercontent.com/1827606/46117042-a1606500-c1c4-11e8-81f2-a62fc88e05c6.png)
+<img src="https://user-images.githubusercontent.com/1827606/46117042-a1606500-c1c4-11e8-81f2-a62fc88e05c6.png" alt="toolset snippet php screenshot" style="width:70%"/>
+
 
 ## Motivation
 Adding custom fields to your template files are a tedious task which require a lot of lookup to find the custom fields variable names. This script automatically searches your database for the custom fields and displays them to you on a web page where you can easily copy custom field php output statments and paste them into your template.
@@ -15,6 +16,7 @@ Adding custom fields to your template files are a tedious task which require a l
 ## Installation
 
 1. Clone the repository.
+
 '''
 git clone git@github.com:smithsa/toolset-php-snipets.git
 '''
@@ -25,11 +27,13 @@ git clone git@github.com:smithsa/toolset-php-snipets.git
 
 **Command Line**
 1. Navigate to the directory holding the contents of the repository
+
 '''
 cd toolset-php-snipets
 '''
 
 2. run the *toolset-php-snipets.py* script. You will see a window appear in the top left corner.
+
 '''
 python toolset-php-snipets.py
 '''
