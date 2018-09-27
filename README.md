@@ -17,9 +17,9 @@ Adding custom fields to your template files are a tedious task which require a l
 
 1. Clone the repository.
 
-'''
-git clone git@github.com:smithsa/toolset-php-snipets.git
-'''
+    ```
+    git clone git@github.com:smithsa/toolset-php-snipets.git
+    ```
 
 ## Usage
 
@@ -28,15 +28,15 @@ git clone git@github.com:smithsa/toolset-php-snipets.git
 **Command Line**
 1. Navigate to the directory holding the contents of the repository
 
-'''
-cd toolset-php-snipets
-'''
+    ```
+    cd toolset-php-snipets
+    ```
 
 2. run the *toolset-php-snipets.py* script. You will see a window appear in the top left corner.
 
-'''
-python toolset-php-snipets.py
-'''
+    ```
+    python toolset-php-snipets.py
+    ```
 
 
 **Executable**
@@ -50,11 +50,11 @@ Once the script is up and running, you can use the following directions to use t
 
 1. Enter the databse name in the window
 
-![toolset snippet php window screenshot](https://user-images.githubusercontent.com/1827606/46117041-a1606500-c1c4-11e8-88eb-f4c4d910fc8e.png)
+    ![toolset snippet php window screenshot](https://user-images.githubusercontent.com/1827606/46117041-a1606500-c1c4-11e8-88eb-f4c4d910fc8e.png)
 
 2. Once step 1 is complete, a new tab will be opened in your Chrome browser showing a page titled *Toolset PHP Snippets: [your datbase name]*. You can use this page to copy snippets as you like. You can get (1) an echo statement of the custom field inside PHP template tags, (2) the custom field as a variable, (3) the custom field as a variable inside PHP template tags.
 
-![toolset snippet php usage](https://user-images.githubusercontent.com/1827606/46117043-a1606500-c1c4-11e8-961e-b5891c703bd0.gif)
+    ![toolset snippet php usage](https://user-images.githubusercontent.com/1827606/46117043-a1606500-c1c4-11e8-961e-b5891c703bd0.gif)
 
 
 ## Built With
