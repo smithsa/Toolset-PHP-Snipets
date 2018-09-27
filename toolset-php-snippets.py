@@ -5,7 +5,7 @@ import cgi
 import webbrowser
 import os
 import json
-import Tkinter as tkinter
+import Tkinter as tkinter #rename tkinter for python 3
 from collections import Counter
 # print(sys.argv)
 top = tkinter.Tk()
