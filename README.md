@@ -70,4 +70,6 @@ Once the script is up and running, you can use the following directions to use t
 5. Submit a pull request :D
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+MIT © [Sade Smith](https://sadesmith.com)
