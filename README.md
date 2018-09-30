@@ -20,6 +20,7 @@ Adding custom fields to your template files are a tedious task which require a l
     ```
     git clone git@github.com:smithsa/toolset-php-snipets.git
     ```
+2. Set the configurations in config.json to the databse where your Wordpress build will live
 
 ## Usage
 
