@@ -1,6 +1,6 @@
 # Toolset PHP Snippets
 
-Toolset PHP Snippets python script that works to get php code customizable field snippets for [Wordpress Toolset Plugin](https://toolset.com/documentation/) custom fields.Included in the repository are (1) an executable script and (2) python script.
+Toolset PHP Snippets python script that works to get php code of customizable field snippets for [Wordpress Toolset Plugin](https://toolset.com/documentation/) custom fields.Included in the repository are (1) an executable script and (2) python script.
 
 <img src="https://user-images.githubusercontent.com/1827606/46117042-a1606500-c1c4-11e8-81f2-a62fc88e05c6.png" alt="toolset snippet php screenshot" width="70%"/>
 
